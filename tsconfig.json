@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "outDir": "./built",
+        "allowJs": true,
+        "lib": ["es5", "esnext.asynciterable"],
+        "target": "es5"
+    },
+    "include": ["./src/**/*"]
+}
