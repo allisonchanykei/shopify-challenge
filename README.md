@@ -17,6 +17,8 @@ Due to a lack of channel for asking for clarifications, the following assumption
 1. not sure what rates mean, so assume price and rates are the same thing
 1. when a customer wants to change an order, they would cancel the order and create a new one
 
+The api has basic CRUD functionailities for product, order, and shop.
+
 ## Technology Stack
 
 1. Typescript
@@ -36,14 +38,16 @@ npm run start
 
 Visit the localhost url that is displayed in your command prompt. The url will lead you to the graphql playground. Click "Http Headers" and add `{"token":"test"}`.
 
+A file has been created for your convenience to test. Simply copy the lines to the playgraound, uncomment the line you want to use, and press the play button.
+You can try out the other functions by looking at the schema on the right.
+
+**Note**: right now, the data lives in memory, meaning any changes you made would be undone once you restart the app.
+
 ## Files
 
 All source files are located in the `src` folder.
 
-`schema.ts` - definitions of queries and mutations
-
-`resolvers.ts` - implementations of queries and mutations
-
+`api/*` - schemas and resolvers are under each type - shop, product, order
 `dataSource/mockData.ts` - sample data for demo purposes
 
 ## Development

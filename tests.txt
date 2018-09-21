@@ -1,0 +1,5 @@
+#query{shops{Id, Name, Product{Name, Price, Shop{Name}}}}
+
+#query{product(productId:"1"){Id, Shop{Name}, Variants{Name, Price, Inventory}}}
+
+#mutation{updateProduct(product:{Id: "1", Variants:[{Name:"Blue", Price: 100, Inventory: 20}]}){Id}}

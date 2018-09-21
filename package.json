@@ -1,18 +1,19 @@
 {
-    "name": "shopify_challenge",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "tsc",
-        "dev": "nodemon built/server.js",
-        "start": "tsc && node built/server.js"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "apollo-server": "^2.0.7",
-        "graphql": "^14.0.2"
-    }
+  "name": "shopify_challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "nodemon built/server.js",
+    "start": "tsc && node built/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.0.7",
+    "graphql": "^14.0.2",
+    "lodash": "^4.17.11"
+  }
 }

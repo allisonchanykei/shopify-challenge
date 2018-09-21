@@ -2,6 +2,11 @@ import { IShopSource, Shop, NewShop } from "../interface/IShopSource";
 import { shops } from "./mockData";
 
 export default class MockShopSource implements IShopSource {
+    static hasShop(id: string): Boolean {
+        const index = shops.findIndex(shop => shop.Id == id);
+        return index != -1;
+    }
+
     getShops(): Shop[] {
         return shops;
     }
@@ -13,7 +18,8 @@ export default class MockShopSource implements IShopSource {
     updateShop(shop: Shop): Shop {
         const index = shops.findIndex(el => el.Id == shop.Id);
         if (index == -1) throw new Error("Shop does not exist.");
-        shops[index] == shop;
+        // only replace fields that are provided
+        shops[index] == Object.assign(shops[index], shop);
         return shops[index];
     }
 

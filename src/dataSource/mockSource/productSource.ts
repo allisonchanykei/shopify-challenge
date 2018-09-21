@@ -1,13 +1,18 @@
 import { IProductSource, Product, NewProduct } from "../interface/IProductSource";
 import { products } from "./mockData";
+import MockShopSource from "./shopSource";
 
 export default class MockProductSource implements IProductSource {
+    static hasProduct(id: string): Boolean {
+        const index = products.findIndex(product => product.Id == id);
+        return index != -1;
+    }
+
     getProducts(): Product[] {
         return products;
     }
 
     getProductsByShop(shopId: string): Product[] {
-        console.log(products);
         return products.filter(product => product.ShopId == shopId);
     }
 
@@ -17,12 +22,15 @@ export default class MockProductSource implements IProductSource {
 
     updateProduct(product: Product): Product {
         const index = products.findIndex(prod => prod.Id == product.Id);
-        if (index == -1) throw new Error("Product does not exist");
-        products[index] = product;
+        if (index == -1) throw new Error("Product does not exist.");
+        // only replace fields that are provided
+        products[index] = Object.assign(products[index], product);
         return products[index];
     }
 
     createProduct(newProduct: NewProduct): Product {
+        // check if shop exists
+        if (MockShopSource.hasShop(newProduct.ShopId)) throw new Error("Shop does not exist.");
         const id = Date.now().toString();
         const product: Product = { ...newProduct, Id: id };
         //default price and inventory to 0
