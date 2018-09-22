@@ -1,5 +1,30 @@
+## query shops
 #query{shops{Id, Name, Product{Name, Price, Shop{Name}}}}
 
+
+## query one product
 #query{product(productId:"1"){Id, Shop{Name}, Variants{Name, Price, Inventory}}}
 
+## update a product
 #mutation{updateProduct(product:{Id: "1", Variants:[{Name:"Blue", Price: 100, Inventory: 20}]}){Id}}
+
+## delete a product
+#mutation{deleteProduct(productId: "1")}
+
+## query a product line item
+#query{variant(variantId:"1"){Name}}
+
+## add product line items
+#mutation{addVariants(productId:"2",variants:[{Name:"Blue",Price:200,Inventory:10},{Name:"Black",Price:200,Inventory:15}]){Variants{Id,Name}, Name}}
+
+## remove product line items
+#mutation{removeVariants(productId:"2",variantIds:["2","asd"]){Id, Shop{Name}, Variants{Name, Price, Inventory,Id}}}
+
+## update product line item
+#mutation{updateVariant(variant:{Id:"2", Inventory: 19}){Id, Shop{Name}, Variants{Name, Price, Inventory,Id}}}
+
+## query an order
+#query{order(orderId: "1"){Id,ShopId,TotalPrice, Items{Product{Name},Variant{Name},Name, Price, Quantity}, Status}}
+
+## create an order
+#mutation{createOrder(order:{ShopId: "1", Items:[{ItemId:"2", ItemType:Variant, Quantity: 2}]}){Id,ShopId,TotalPrice, Status}}
