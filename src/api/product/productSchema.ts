@@ -43,9 +43,9 @@ export const typeDefs = gql`
 
     input UpdateProductLineItem {
         Id: ID!
-        Name: String!
-        Price: Float!
-        Inventory: Int!
+        Name: String
+        Price: Float
+        Inventory: Int
     }
 
     extend type Query {
@@ -55,11 +55,11 @@ export const typeDefs = gql`
     }
 
     extend type Mutation {
-        updateProduct(product: UpdateProductInfo!): Product
-        createProduct(product: NewProductInfo!): Product
-        addVariants(productId: ID!, variants: [NewProductLineItem!]!): Product
-        removeVariants(productId: ID!, variantIds: [ID!]!): Product
-        updateVariant(variant: UpdateProductLineItem!): Product
-        deleteProduct(productId: ID!): Boolean
+        updateProduct(product: UpdateProductInfo!): Product!
+        createProduct(product: NewProductInfo!): Product!
+        addVariants(productId: ID!, variants: [NewProductLineItem!]!): Product!
+        removeVariants(productId: ID!, variantIds: [ID!]!): Product!
+        updateVariant(variant: UpdateProductLineItem!): Product!
+        deleteProduct(productId: ID!): Boolean!
     }
 `;

@@ -16,8 +16,8 @@ export interface IProductSource {
 export interface NewProduct {
     ShopId: number;
     Name: string;
-    Price?: number;
-    Inventory?: number;
+    Price: number;
+    Inventory: number;
     Description: string;
     Variants?: ProductLineItem[];
 }

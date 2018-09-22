@@ -5,11 +5,13 @@ import { resolvers as productResovlers } from "./api/product/productResolver";
 import { typeDefs as productTypeDefs } from "./api/product/productSchema";
 import { resolvers as shopResolvers } from "./api/shop/shopResolver";
 import { typeDefs as shopTypeDefs } from "./api/shop/shopSchema";
+import { resolvers as orderResolvers } from "./api/order/orderResolver";
+import { typeDefs as orderTypeDefs } from "./api/order/orderSchema";
 
 const TOKEN = "test";
 
-const typeDefs = [shopTypeDefs, productTypeDefs];
-const resolvers = merge(shopResolvers, productResovlers);
+const typeDefs = [shopTypeDefs, productTypeDefs, orderTypeDefs];
+const resolvers = merge(shopResolvers, productResovlers, orderResolvers);
 // In the most basic sense, the ApolloServer can be started
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.

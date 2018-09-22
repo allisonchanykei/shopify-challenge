@@ -1,5 +1,6 @@
 import { Shop } from "../interface/IShopSource";
 import { Product, ProductLineItem } from "../interface/IProductSource";
+import { Order, Status, ItemType } from "../interface/IOrderSource";
 
 export const shops: Shop[] = [
     {
@@ -55,5 +56,30 @@ export const variants: ProductLineItem[] = [
         Name: "Black",
         Inventory: 20,
         Price: 45
+    }
+];
+
+export const orders: Order[] = [
+    {
+        Id: 1,
+        ShopId: 1,
+        TotalPrice: 140,
+        Items: [
+            {
+                Name: "Product 1 - Red",
+                Price: 60,
+                ItemId: 1,
+                ItemType: ItemType.Variant,
+                Quantity: 2
+            },
+            {
+                Name: "Product 2",
+                Price: 20,
+                ItemId: 2,
+                ItemType: ItemType.Product,
+                Quantity: 1
+            }
+        ],
+        Status: Status.Active
     }
 ];

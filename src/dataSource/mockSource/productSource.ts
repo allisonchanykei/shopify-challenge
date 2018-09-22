@@ -12,6 +12,10 @@ export default class MockProductSource implements IProductSource {
         return products.findIndex(product => product.Id == id) != -1;
     }
 
+    static hasVariant(id: number): boolean {
+        return variants.findIndex(variant => variant.Id == id) != -1;
+    }
+
     getProducts(): Product[] {
         return products;
     }

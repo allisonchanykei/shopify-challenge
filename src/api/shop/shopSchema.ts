@@ -28,8 +28,8 @@ export const typeDefs = gql`
 
     type Mutation {
         # shop mutations
-        updateShop(shop: UpdateShopInfo!): Shop
-        createShop(shop: NewShopInfo!): Shop
-        deleteShop(shopId: ID!): Boolean
+        updateShop(shop: UpdateShopInfo!): Shop!
+        createShop(shop: NewShopInfo!): Shop!
+        deleteShop(shopId: ID!): Boolean!
     }
 `;
