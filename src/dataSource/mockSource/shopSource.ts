@@ -1,8 +1,9 @@
 import { IShopSource, Shop, NewShop } from "../interface/IShopSource";
 import { shops } from "./mockData";
+import { newId } from "./helper";
 
 export default class MockShopSource implements IShopSource {
-    static hasShop(id: string): Boolean {
+    static hasShop(id: number): Boolean {
         const index = shops.findIndex(shop => shop.Id == id);
         return index != -1;
     }
@@ -11,7 +12,7 @@ export default class MockShopSource implements IShopSource {
         return shops;
     }
 
-    getShop(id: string): Shop {
+    getShop(id: number): Shop {
         return shops.find(shop => shop.Id == id);
     }
 
@@ -24,16 +25,16 @@ export default class MockShopSource implements IShopSource {
     }
 
     createShop(newShop: NewShop): Shop {
-        const shop: Shop = { Id: Date.now().toString(), ...newShop };
+        const shop: Shop = { Id: newId(shops.length), ...newShop };
         //assume currency is a legit one
         shop.Currency = shop.Currency ? shop.Currency : "USD";
         shops.push(shop);
         return shop;
     }
 
-    deleteShop(id: string): boolean {
+    deleteShop(id: number): boolean {
         const index = shops.findIndex(el => el.Id == id);
-        if (index == -1) throw new Error("Shop does not exist.");
+        if (index == -1) return true;
         shops.splice(index, 1);
         return true;
     }
