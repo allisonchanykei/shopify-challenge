@@ -3,9 +3,13 @@
 This is a GraphQL API that is specifically designed for the winter 2019 Shopify intern challenge.
 
 In the challenge description, the relationship is as follow:
+
 Shops have many Products
+
 Shops have many Orders
+
 Products have many Line Items
+
 Orders have many Line Items
 
 Due to a lack of channel for asking for clarifications, the following assumptions are made:
