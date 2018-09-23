@@ -7,10 +7,10 @@ export default class MockOrderSource implements IOrderSource {
     getOrders(): Order[] {
         return orders;
     }
-    getOrdersByShop(shopId: number): Order[] {
+    getOrdersByShop(shopId: string): Order[] {
         return orders.filter(order => order.ShopId == shopId);
     }
-    getOrder(id: number): Order {
+    getOrder(id: string): Order {
         return orders.find(order => order.Id == id);
     }
     createOrder(newOrder: NewOrder): Order {
@@ -54,19 +54,19 @@ export default class MockOrderSource implements IOrderSource {
             throw new Error(errorMessage);
         }
 
-        const order: Order = { ...newOrder, Id: newId(orders.length) };
+        const order: Order = { ...newOrder, Id: newId() };
         order.Status = Status.Active;
         order.TotalPrice = totalPrice;
         orders.push(order);
         return order;
     }
-    updateOrderStatus(id: number, status: Status): Order {
+    updateOrderStatus(id: string, status: Status): Order {
         const index = orders.findIndex(element => element.Id == id);
         if (index == -1) throw new Error("Order does not exist");
         orders[index].Status = status;
         return orders[index];
     }
-    deleteOrder(id: number): boolean {
+    deleteOrder(id: string): boolean {
         const index = orders.findIndex(element => element.Id == id);
         if (index == -1) return true;
         orders.splice(index, 1);

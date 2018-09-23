@@ -30,7 +30,12 @@ export const resolvers = {
         Product: (variant, args, context: Source) => {
             let productId = variant.ItemId;
             if (variant.ItemType == ItemType.Variant) {
-                productId = context.ProductSource.getVariant(variant.ItemId).ProductId;
+                const tempVariant = context.ProductSource.getVariant(variant.ItemId);
+                if (tempVariant) {
+                    productId = tempVariant.ProductId;
+                } else {
+                    return null;
+                }
             }
             return context.ProductSource.getProduct(productId);
         },

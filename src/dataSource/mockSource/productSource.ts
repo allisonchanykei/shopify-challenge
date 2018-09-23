@@ -4,15 +4,15 @@ import MockShopSource from "./shopSource";
 import { newId } from "./helper";
 
 export default class MockProductSource implements IProductSource {
-    private indexOf(id: number): number {
+    private indexOf(id: string): number {
         return products.findIndex(product => product.Id == id);
     }
 
-    static hasProduct(id: number): boolean {
+    static hasProduct(id: string): boolean {
         return products.findIndex(product => product.Id == id) != -1;
     }
 
-    static hasVariant(id: number): boolean {
+    static hasVariant(id: string): boolean {
         return variants.findIndex(variant => variant.Id == id) != -1;
     }
 
@@ -20,19 +20,19 @@ export default class MockProductSource implements IProductSource {
         return products;
     }
 
-    getProductsByShop(shopId: number): Product[] {
+    getProductsByShop(shopId: string): Product[] {
         return products.filter(product => product.ShopId == shopId);
     }
 
-    getProduct(id: number): Product {
+    getProduct(id: string): Product {
         return products.find(product => product.Id == id);
     }
 
-    getVariant(variantId: number): ProductLineItem {
+    getVariant(variantId: string): ProductLineItem {
         return variants.find(variant => variant.Id == variantId);
     }
 
-    getVariantsByProduct(productId: number): ProductLineItem[] {
+    getVariantsByProduct(productId: string): ProductLineItem[] {
         return variants.filter(variant => variant.ProductId == productId);
     }
 
@@ -48,8 +48,8 @@ export default class MockProductSource implements IProductSource {
 
     createProduct(newProduct: NewProduct): Product {
         // check if shop exists
-        if (MockShopSource.hasShop(newProduct.ShopId)) throw new Error("Shop does not exist.");
-        const id = newId(products.length);
+        if (!MockShopSource.hasShop(newProduct.ShopId)) throw new Error("Shop does not exist.");
+        const id = newId();
         // spread newProduct's field across product
         const product: Product = { ...newProduct, Id: id };
         //default price and inventory to 0
@@ -59,21 +59,21 @@ export default class MockProductSource implements IProductSource {
         return product;
     }
 
-    addProductVariants(productId: number, newVariants: NewProductLineItem[]): Product {
+    addProductVariants(productId: string, newVariants: NewProductLineItem[]): Product {
         const index = this.indexOf(productId);
         if (index == -1) throw new Error("Product does not exist.");
         newVariants.forEach(variant => {
-            variants.push({ ...variant, Id: newId(variants.length), ProductId: productId });
+            variants.push({ ...variant, Id: newId(), ProductId: productId });
         });
         return products[index];
     }
 
-    removeProductVariants(productId: number, variantIds: number[]): Product {
+    removeProductVariants(productId: string, variantIds: string[]): Product {
         const index = this.indexOf(productId);
         if (index == -1) throw new Error("Product does not exist");
         // would not be O(nm) if using database, this is just for demo purpose
         for (let i = variants.length - 1; i >= 0; i--) {
-            if (variantIds.indexOf(variants[i].Id) != -1) {
+            if (variantIds.indexOf(variants[i].Id) != -1 && variants[i].ProductId == productId) {
                 variants.splice(i, 1);
             }
         }
@@ -88,7 +88,7 @@ export default class MockProductSource implements IProductSource {
         return this.getProduct(variant.ProductId);
     }
 
-    deleteProduct(id: number): boolean {
+    deleteProduct(id: string): boolean {
         const index = this.indexOf(id);
         if (index == -1) return true;
         // remove related variants

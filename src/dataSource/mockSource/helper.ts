@@ -1,4 +1,5 @@
-export function newId(length: number): number {
+var shortid = require("shortid");
+export function newId(): string {
     // easier to change the way id is generated in the future
-    return length + 1;
+    return shortid.generate();
 }

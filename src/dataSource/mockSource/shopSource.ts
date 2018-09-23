@@ -3,7 +3,7 @@ import { shops } from "./mockData";
 import { newId } from "./helper";
 
 export default class MockShopSource implements IShopSource {
-    static hasShop(id: number): Boolean {
+    static hasShop(id: string): Boolean {
         const index = shops.findIndex(shop => shop.Id == id);
         return index != -1;
     }
@@ -12,7 +12,7 @@ export default class MockShopSource implements IShopSource {
         return shops;
     }
 
-    getShop(id: number): Shop {
+    getShop(id: string): Shop {
         return shops.find(shop => shop.Id == id);
     }
 
@@ -25,14 +25,14 @@ export default class MockShopSource implements IShopSource {
     }
 
     createShop(newShop: NewShop): Shop {
-        const shop: Shop = { Id: newId(shops.length), ...newShop };
+        const shop: Shop = { Id: newId(), ...newShop };
         //assume currency is a legit one
         shop.Currency = shop.Currency ? shop.Currency : "USD";
         shops.push(shop);
         return shop;
     }
 
-    deleteShop(id: number): boolean {
+    deleteShop(id: string): boolean {
         const index = shops.findIndex(el => el.Id == id);
         if (index == -1) return true;
         shops.splice(index, 1);

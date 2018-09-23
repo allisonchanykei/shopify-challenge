@@ -1,20 +1,20 @@
 export interface IProductSource {
     getProducts(): Product[];
-    getProductsByShop(shopId: number): Product[];
-    getProduct(id: number): Product;
-    getVariantsByProduct(productId: number): ProductLineItem[];
-    getVariant(id: number): ProductLineItem;
+    getProductsByShop(shopId: string): Product[];
+    getProduct(id: string): Product;
+    getVariantsByProduct(productId: string): ProductLineItem[];
+    getVariant(id: string): ProductLineItem;
     //allow bulk insert and remove for variants on the same product
-    addProductVariants(productId: number, variants: ProductLineItem[]): Product;
-    removeProductVariants(productId: number, variantIds: number[]): Product;
+    addProductVariants(productId: string, variants: ProductLineItem[]): Product;
+    removeProductVariants(productId: string, variantIds: string[]): Product;
     updateVariant(variant: ProductLineItem): Product;
     updateProduct(product: Product): Product;
     createProduct(newProduct: NewProduct): Product;
-    deleteProduct(id: number): boolean;
+    deleteProduct(id: string): boolean;
 }
 
 export interface NewProduct {
-    ShopId: number;
+    ShopId: string;
     Name: string;
     Price: number;
     Inventory: number;
@@ -23,7 +23,7 @@ export interface NewProduct {
 }
 
 export interface Product extends NewProduct {
-    Id: number;
+    Id: string;
 }
 
 export interface NewProductLineItem {
@@ -33,6 +33,6 @@ export interface NewProductLineItem {
 }
 
 export interface ProductLineItem extends NewProductLineItem {
-    Id: number;
-    ProductId: number;
+    Id: string;
+    ProductId: string;
 }

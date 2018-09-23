@@ -25,6 +25,9 @@ export const resolvers = {
     Shop: {
         Products: (shop, args, context: Source) => {
             return context.ProductSource.getProductsByShop(shop.Id);
+        },
+        Orders: (shop, args, context: Source) => {
+            return context.OrderSource.getOrdersByShop(shop.Id);
         }
     }
 };

@@ -18,6 +18,7 @@ export const typeDefs = gql`
         Name: String!
         Currency: String!
         Products: [Product!]
+        Orders: [Order!]
     }
 
     # base type for query and mutations are here, other files should extend this type

@@ -26,7 +26,7 @@ export const typeDefs = gql`
     }
 
     type OrderLineItem {
-        Product: Product!
+        Product: Product
         Variant: ProductLineItem
         Name: String!
         Price: Float!
