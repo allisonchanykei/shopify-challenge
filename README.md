@@ -15,7 +15,7 @@ Orders have many Line Items
 Due to a lack of channel for asking for clarifications, the following assumptions are made:
 
 1. line items of products are variations of a product e.g. different colour
-1. the price of the product excludes the price of its line items
+1. the price of the product will be ignored if there are line items
 1. line items are unique to each product
 1. orders should have a copy of the prices of line items or products since they should be a snapshot at the time of purchase
 1. not sure what rates mean, so assume price and rates are the same thing
