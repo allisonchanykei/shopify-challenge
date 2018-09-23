@@ -52,6 +52,7 @@ You can try out the other functions by looking at the schema on the right.
 All source files are located in the `src` folder.
 
 `api/*` - schemas and resolvers are under each type - shop, product, order
+
 `dataSource/mockData.ts` - sample data for demo purposes
 
 ## Development
