@@ -11,12 +11,12 @@ In the challenge description, the relationship is as follow:
 
 Due to a lack of channel for asking for clarifications, the following assumptions are made:
 
-1. line items of products are variations of a product e.g. different colour
-1. the price of the product will be ignored if there are line items
-1. line items are unique to each product
-1. orders should have a copy of the prices of line items or products since they should be a snapshot at the time of purchase
-1. not sure what rates mean, so assume price and rates are the same thing
-1. when a customer wants to change an order, they would cancel the order and create a new one
+1. Line items of products are variations of a product e.g. different colour
+1. The price of the product will be ignored if there are line items
+1. Line items are unique to each product
+1. Orders should have a copy of the prices of line items or products since they should be a snapshot at the time of purchase
+1. Not sure what rates mean, so assume price and rates are the same thing
+1. When a customer wants to change an order, they would cancel the order and create a new one
 
 The api has basic CRUD (create, read, update, delete) functionailities for product, order, and shop.
 
@@ -73,4 +73,4 @@ tsc -w
 npm run dev
 ```
 
-This would refresh the api locally everytime you save a file.
+Nodemon refreshes the api locally everytime you save a file.
